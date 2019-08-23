@@ -1,11 +1,13 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Button} from "reactstrap";
 
 function JesseButton(props) {
     return (
-      <button className="square" onClick={props.onClick}>
+      <Button onClick={props.onClick} color="info">
         Is Jesse wrong?
-      </button>
+      </Button>
     );
   }
 
