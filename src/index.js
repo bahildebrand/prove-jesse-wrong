@@ -1,15 +1,59 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button} from "reactstrap";
+import {
+    Button,
+    Container,
+    Row,
+    Col,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    Collapse } from "reactstrap";
 
 function JesseButton(props) {
     return (
-      <Button onClick={props.onClick} color="info">
+      <Button  onClick={props.onClick} color="info" class="center-block">
         Is Jesse wrong?
       </Button>
     );
   }
+
+class NavBar extends React.Component {
+constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+    isOpen: false
+    };
+}
+toggle() {
+    this.setState({
+    isOpen: !this.state.isOpen
+    });
+}
+render() {
+    return (
+    <div>
+        <Navbar color="light" light expand="md">
+            <NavbarBrand href="/">Prove Jesse Wrong</NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+                <NavItem>
+                    <NavLink href="/components/">Components</NavLink>
+                </NavItem>
+            </Nav>
+            </Collapse>
+        </Navbar>
+    </div>
+    );
+}
+}
 
 class JesseWrong extends React.Component {
     constructor(props) {
@@ -43,12 +87,27 @@ class JesseWrong extends React.Component {
 
     render() {
         return(
-            <div>
-            <JesseButton
-                onClick = {() => this.handleClick()}
-            />
-            <h1>{this.state.wrong_list[this.state.idx]}</h1>
-            </div>
+            <Container>
+                <Row>
+                    <NavBar />
+                </Row>
+                <Row>
+                    <Col></Col>
+                    <Col className="text-center">
+                    <JesseButton
+                        onClick = {() => this.handleClick()}
+                    />
+                    </Col>
+                    <Col></Col>
+                </Row>
+                <Row>
+                    <Col></Col>
+                    <Col className="text-center">
+                        <h1>{this.state.wrong_list[this.state.idx]}</h1>
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
         )
     }
 }
