@@ -89,7 +89,7 @@ class JesseWrong extends React.Component {
         return(
             <Container>
                 <Row>
-                    <NavBar />
+                    <Col><NavBar /></Col>
                 </Row>
                 <Row>
                     <Col></Col>
