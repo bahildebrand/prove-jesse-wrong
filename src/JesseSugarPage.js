@@ -3,7 +3,7 @@ import {
     Container,
     Row,
     Col,
-    Media } from 'reactstrap';
+    Media, } from 'reactstrap';
 
 export default class JesseSugarPage extends React.Component {
     render() {
