@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {
     Button,
     Container,
@@ -8,7 +9,7 @@ import {
 
 function JesseButton(props) {
     return (
-      <Button  onClick={props.onClick} color="secondary" class="center-block">
+      <Button  onClick={props.onClick} className="center-block">
         Is Jesse wrong?
       </Button>
     );
@@ -18,37 +19,21 @@ function JesseButton(props) {
     constructor(props) {
         super(props);
         this.state = {
-            wrong_list : [
-                "Definitely.",
-                "Does a bear shit in the woods?",
-                "Big wrong.",
-                "Bongus Wrongus.",
-                "Yurp",
-                "Is a frog's ass water tight?",
-                "Is a bear catholic?",
-                "Does the pope shit in the woods?",
-                "Is the pope catholic?",
-                "Does a Polish rifle shoot white flags?",
-                "Is the atomic weight of Cobalt 58.9?",
-                "Is the space pope reptilian?",
-                "Beeg Beeg",
-                "Wrongo Bongo"
-            ],
             cur_wrong: "",
         };
     }
 
-    handleClick() {
-        let idx;
+    async handleClick() {
+        let cur_wrong;
 
         //Prevents the case where the same answer is given multiple times in a row
         do {
-            idx = Math.floor(Math.random() * (this.state.wrong_list.length))
-        } while(this.state.cur_wrong === this.state.wrong_list[idx]);
+            let response = await axios.get(`http://localhost:5000/wrong-reason`);
 
-        this.setState({
-            cur_wrong: this.state.wrong_list[idx]
-        })
+            cur_wrong = response.data["reason"]
+        } while(this.state.cur_wrong === cur_wrong);
+
+        this.setState({cur_wrong})
     }
 
     render() {
