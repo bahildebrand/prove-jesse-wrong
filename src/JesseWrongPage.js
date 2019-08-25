@@ -28,7 +28,7 @@ function JesseButton(props) {
 
         //Prevents the case where the same answer is given multiple times in a row
         do {
-            let response = await axios.get(`http://localhost:5000/wrong-reason`);
+            let response = await axios.get(`http://api.provejessewrong.com/wrong-reason`);
 
             cur_wrong = response.data["reason"]
         } while(this.state.cur_wrong === cur_wrong);
