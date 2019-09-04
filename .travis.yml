@@ -1,6 +1,12 @@
-language: nodejs
+language: node_js
+node_js:
+  - 9
+cache:
+  - pip
 install:
-  - sudo apt install awscli
+  - pip install awscli --user
+before_script:
+  - npm install
 script:
   - npm run build
 deploy:
