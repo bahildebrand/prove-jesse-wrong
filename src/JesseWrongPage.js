@@ -30,7 +30,9 @@ function JesseButton(props) {
         do {
             let response = await axios.get(`https://api.provejessewrong.com/wrong-reason`);
 
-            cur_wrong = response.data["reason"]
+            let json = JSON.parse(response.data.body);
+            console.log(json);
+            cur_wrong = json["reason"];
         } while(this.state.cur_wrong === cur_wrong);
 
         this.setState({cur_wrong})
